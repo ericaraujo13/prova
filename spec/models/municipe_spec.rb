@@ -13,7 +13,7 @@ RSpec.describe Municipe, type: :model do
     it { is_expected.to define_enum_for(:status).with_values(active: 0, inactive: 1) }
     it { is_expected.to validate_presence_of(:birthday) }
     it { is_expected.to validate_presence_of(:phone) }
-    it { is_expected.to allow_value('+123 (45) 67890-1234').for(:phone) }
+    it { is_expected.to allow_value('+123 45 67890-1234').for(:phone) }
     it { is_expected.not_to allow_value('+12345678901234').for(:phone) }
     it { is_expected.to validate_presence_of(:cns) }
     it { is_expected.to allow_value('123456789123456').for(:cns) }
