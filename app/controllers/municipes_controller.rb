@@ -34,11 +34,12 @@ class MunicipesController < ApplicationController
   end
 
   private
-    def set_municipe
-      @municipe = Municipe.find(params[:id])
-    end
 
-    def municipe_params
-      params.require(:municipe).permit(:name, :email, :birthday, :phone, :photo, :status)
-    end
+  def set_municipe
+    @municipe = Municipe.find(params[:id])
+  end
+
+  def municipe_params
+    params.require(:municipe).permit(:name, :email, :birthday, :phone, :photo, :status)
+  end
 end
