@@ -3,6 +3,7 @@ class MunicipesController < ApplicationController
 
   def index
     @municipes = Municipe.all
+    @municipe = Municipe.new
   end
 
   def show
@@ -40,7 +41,7 @@ class MunicipesController < ApplicationController
   end
 
   def municipe_params
-    params.require(:municipe).permit(:name, :email, :birthday, :phone, :photo, :status, address_attributes:)
+    params.require(:municipe).permit(:name, :email, :birthday, :phone, :photo, :status, :cns, :cpf, address_attributes:)
   end
 
   def address_attributes

@@ -1,47 +1,93 @@
-<%= form_with(model: municipe, class: "contents") do |form| %>
-  <% if municipe.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
+<%= turbo_frame_tag 'new_municipe_component' do %>
+  <%= form_for @municipe, data: {turbo_frame: 'table_municipes'} do |f| %>
+    <% if municipe.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
 
-      <ul>
-        <% municipe.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% municipe.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h1 class="text-xl py-2 font-medium">Dados</h1>
+    <div class="">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                        focus:border-primary-600 block w-full p-2.5" %>
+    </div>
+
+    <div class="">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                          focus:border-primary-600 block w-full p-2.5" %>
+    </div>
+
+    <div class="">
+      <%= f.label :birthday %>
+      <%= f.text_field :birthday, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+      focus:border-primary-600 block w-full p-2.5" %>
+    </div>
+
+    <div class="">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+      focus:border-primary-600 block w-full p-2.5" %>
+    </div>
+
+    <div class="">
+      <%= f.label :photo %>
+      <%= f.text_field :photo, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+      focus:border-primary-600 block w-full p-2.5" %>
+    </div>
+
+    <div class="">
+      <%= f.label :status %>
+      <%= f.number_field :status, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+      focus:border-primary-600 block w-full p-2.5" %>
+    </div>
+
+      <h1 class="text-xl py-2 font-medium">Endereço</h1>
+      <%= f.fields_for :addresses do |address_form| %>
+      <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
+        <div>
+          <%= address_form.label :public_place, 'Rua' %>
+          <%= address_form.text_field :public_place, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                                      focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+        <div>
+          <%= address_form.label :neighborhood, 'Bairro' %>
+          <%= address_form.text_field :city, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                                      focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+        <div>
+          <%= address_form.label :city, 'Cidade' %>
+          <%= address_form.text_field :city, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                                      focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+
+        <div>
+          <%= address_form.label :state, 'Estado' %>
+          <%= address_form.text_field :state, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                                      focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+        <div>
+          <%= address_form.label :ibge_code, 'Código IBGE' %>
+          <%= address_form.text_field :ibge_code, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                                      focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+        <div>
+          <%= address_form.label :zip, 'CEP' %>
+          <%= address_form.text_field :zip, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                                      focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+      </div>
+
+      <% end %>
+    <div class="">
+      <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :birthday %>
-    <%= form.text_field :birthday, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :photo %>
-    <%= form.text_field :photo, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :status %>
-    <%= form.number_field :status, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
 <% end %>
