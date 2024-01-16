@@ -1,5 +1,5 @@
 class MunicipesController < ApplicationController
-  before_action :set_municipe, only: %i[ show edit update destroy ]
+  before_action :set_municipe, only: %i[ show edit update ]
 
   def index
     @municipes = Municipe.all
