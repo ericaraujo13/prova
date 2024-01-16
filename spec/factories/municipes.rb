@@ -3,8 +3,10 @@ FactoryBot.define do
     name { FFaker::NameBR.name }
     email { FFaker::Internet.safe_email }
     birthday { FFaker::Date.birthday }
-    phone { FFaker::PhoneNumberBR.international_mobile_phone_number }
+    phone { '+55 32 97761-3820' }
     photo { "MyString" }
     status { rand(0..1) }
+    cns { '123456789123456' }
+    address
   end
 end

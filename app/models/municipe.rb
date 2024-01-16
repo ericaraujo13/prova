@@ -1,4 +1,6 @@
 class Municipe < ApplicationRecord
+  has_one :address
+  accepts_nested_attributes_for :address
 
   enum status: { active: 0, inactive: 1 }
 
