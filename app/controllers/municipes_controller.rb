@@ -44,6 +44,6 @@ class MunicipesController < ApplicationController
   end
 
   def address_attributes
-    { :neighborhood, :zip, :city, :public_place, :state, :ibge_code }
+    [ :neighborhood, :zip, :city, :public_place, :state, :ibge_code ]
   end
 end
