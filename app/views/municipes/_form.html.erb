@@ -115,7 +115,7 @@
         </div>
       </div>
     <% end %>
-    <%= f.submit "Confirmar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= f.submit "Confirmar", data: {turbo_frame: 'tabela'},  class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     <%= link_to 'Voltar', root_path, data: { turbo: :false }, class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
   <% end %>
