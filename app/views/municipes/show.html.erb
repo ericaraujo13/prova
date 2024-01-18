@@ -5,7 +5,11 @@
               <div class="bg-white p-3 border-t-4 border-green-400">
                   <div class="image overflow-hidden">
                       <div class="h-auto w-full mx-auto">
-                        <%= image_tag @municipe.photo %>
+                        <% if @municipe.photo.blank? %>
+                            <%= image_tag("user.png") %>
+                        <% else %>
+                            <%= image_tag @municipe.photo %>
+                        <% end %>
                       </div>
                   </div>
                   <h1 class="text-gray-900 font-bold text-xl leading-8 my-1"><%= @municipe.name %></h1>
@@ -70,7 +74,7 @@
                           </div>
                           <div class="grid grid-cols-2">
                               <div class="px-4 py-2 font-semibold">Data de nascimento</div>
-                              <div class="px-4 py-2"><%= @municipe.birthday %></div>
+                              <div class="px-4 py-2"><%= @municipe.birthday.strftime("%d/%m/%Y") %></div>
                           </div>
                       </div>
                   </div>
