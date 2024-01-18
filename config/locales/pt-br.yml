@@ -9,6 +9,7 @@ pt-BR:
         birthday: Data de nascimento
         name: Nome
         phone: Telefone
+        photo: Foto
       address: 
         zip: CEP
         neighborhood: Bairro

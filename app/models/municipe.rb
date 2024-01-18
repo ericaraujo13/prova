@@ -15,7 +15,7 @@ class Municipe < ApplicationRecord
     attachable.variant :mini,   resize_to_fit: [30, 30]
   end
 
-  validates :name, :birthday, :status, presence: true
+  validates :name, :birthday, :status, :photo, presence: true
   validates :birthday, not_in_future: true
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     format: { with: URI::MailTo::EMAIL_REGEXP }
