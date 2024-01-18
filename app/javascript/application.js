@@ -4,6 +4,7 @@ import "controllers"
 import Alpine from 'alpinejs'
 import mask from '@alpinejs/mask'
 import getAddress from "./controllers/getAddress"
+import 'flowbite';
 
 window.Alpine = Alpine
 Alpine.start()
