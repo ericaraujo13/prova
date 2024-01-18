@@ -2,7 +2,7 @@ class Municipe < ApplicationRecord
   has_one :address
   accepts_nested_attributes_for :address
 
-  enum status: { active: 0, inactive: 1 }
+  enum status: { inactive: 0, active: 1 }
 
   has_one_attached :photo do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
@@ -18,4 +18,5 @@ class Municipe < ApplicationRecord
 
   validates :cns, presence: true,
                   format: { with: /\A[0-9]{15}\z/ }
+
 end

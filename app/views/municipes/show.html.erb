@@ -1,15 +1,120 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="w-full text-white bg-main-color">
+  <div class="container mx-auto my-5 p-5">
+      <div class="md:flex no-wrap md:-mx-2 ">
+          <!-- Left Side -->
+          <div class="w-full md:w-3/12 md:mx-2">
+              <!-- Profile Card -->
+              <div class="bg-white p-3 border-t-4 border-green-400">
+                  <div class="image overflow-hidden">
+                      <div class="h-auto w-full mx-auto">
+                        <%= image_tag @municipe.photo %>
+                      </div>
+                  </div>
+                  <h1 class="text-gray-900 font-bold text-xl leading-8 my-1"><%= @municipe.name %></h1>
+                  <p class="text-sm text-gray-500 hover:text-gray-600 leading-6"><%= @municipe.email %></p>
+                  <ul
+                      class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                      <li class="flex items-center py-3">
+                        <span>Status</span>
+                        <% if @municipe.status === 'active' %>
+                        <span class="ml-auto"><span
+                                class="bg-green-500 py-1 px-2 rounded text-white text-sm">Ativo</span></span>
+                        <% else %>
+                          <span class="ml-auto"><span
+                          class="bg-green-500 py-1 px-2 rounded text-white text-sm">Ativo</span></span>
+                        <% end %>
+                      </li>
+                      <li class="flex items-center py-3">
+                          <span>Data de cadastro</span>
+                          <span class="ml-auto"><%= @municipe.created_at.strftime("%d/%m/%Y") %></span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="w-full md:w-9/12 mx-2 h-64">
+              <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="text-black flex justify-end space-x-2">
+                  <%= link_to 'Voltar', root_path, class: 'btn-back' %>
+                  <%= link_to "Editar", edit_municipe_path(@municipe), class: "btn-edit" %>
 
-    <%= render @municipe %>
-
-    <%= link_to "Edit this municipe", edit_municipe_path(@municipe), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this municipe", municipe_path(@municipe), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to "Back to municipes", municipes_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+                </div>
+                  <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                      <span clas="text-green-500">
+                          <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                      </span>
+                      <span class="tracking-wide">Dados</span>
+                  </div>
+                  <div class="text-gray-700">
+                      <div class="grid md:grid-cols-2 text-sm">
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Nome</div>
+                              <div class="px-4 py-2"><%= @municipe.name %></div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Email</div>
+                              <div class="px-4 py-2"><%= @municipe.email %></div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Telefone</div>
+                            <div class="px-4 py-2"><%= @municipe.phone %></div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Cpf</div>
+                              <div class="px-4 py-2"><%= @municipe.cpf %></div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">CNS</div>
+                              <div class="px-4 py-2"><%= @municipe.cns %></div>
+                          </div>
+                          <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Data de nascimento</div>
+                              <div class="px-4 py-2"><%= @municipe.birthday %></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="text-gray-700">
+                    <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                      <span clas="text-green-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                        
+                      </span>
+                      <span class="tracking-wide">Endereço</span>
+                  </div>
+                    <div class="grid md:grid-cols-2 text-sm">
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Rua</div>
+                            <div class="px-4 py-2"><%= @municipe.address.public_place %></div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Bairro</div>
+                            <div class="px-4 py-2"><%= @municipe.address.neighborhood %></div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Cidade</div>
+                            <div class="px-4 py-2"><%= @municipe.address.city %></div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Estado</div>
+                            <div class="px-4 py-2"><%= @municipe.address.state %></div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                          <div class="px-4 py-2 font-semibold">Código IBGE</div>
+                          <div class="px-4 py-2"><%= @municipe.address.zip %></div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="px-4 py-2 font-semibold">Código IBGE</div>
+                            <div class="px-4 py-2"><%= @municipe.address.ibge_code %></div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>

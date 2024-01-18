@@ -8,4 +8,14 @@
     @apply block bg-green-600 font-semibold text-white hover:bg-green-700
     focus:ring-4 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center;
   }
+
+  .btn-edit {
+    @apply block bg-blue-600 font-semibold text-white hover:bg-blue-700
+    focus:ring-4 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center;
+  }
+
+  .btn-back {
+    @apply block bg-red-600 font-semibold text-white hover:bg-red-700
+    focus:ring-4 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center;
+  }
 }

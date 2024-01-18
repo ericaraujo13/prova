@@ -11,6 +11,7 @@ class MunicipesController < ApplicationController
 
   def new
     @municipe = Municipe.new
+    @municipe.build_address
   end
 
   def edit
@@ -20,9 +21,9 @@ class MunicipesController < ApplicationController
     @municipe = Municipe.new(municipe_params)
 
     if @municipe.save
-       redirect_to municipe_url(@municipe), notice: "Municipe was successfully created."
+      redirect_to root_path, notice: "Municipe was successfully created."
     else
-        render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

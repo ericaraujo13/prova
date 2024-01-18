@@ -6,3 +6,5 @@ pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "flowbite", to: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.turbo.min.js"
+pin "alpinejs" # @3.13.3
+pin "@alpinejs/mask", to: "https://ga.jspm.io/npm:@alpinejs/mask@3.13.0/dist/module.esm.js"

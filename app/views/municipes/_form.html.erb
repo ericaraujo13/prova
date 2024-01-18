@@ -1,9 +1,9 @@
 <%= turbo_frame_tag 'new_municipe_component' do %>
-  <%= form_for @municipe, data: {turbo_frame: 'table_municipes'} do |f| %>
+  <%= form_for @municipe do |f| %>
+  <div x-init="">
     <% if municipe.errors.any? %>
       <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
         <h2><%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
-
         <ul>
           <% municipe.errors.each do |error| %>
             <li><%= error.full_message %></li>
@@ -13,44 +13,59 @@
     <% end %>
 
     <h1 class="text-xl py-2 font-medium">Dados</h1>
-    <div class="">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                        focus:border-primary-600 block w-full p-2.5" %>
-    </div>
+      <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
+        <div class="">
+          <%= f.label :name, 'Nome' %>
+          <%= f.text_field :name, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                            focus:border-primary-600 block w-full p-2.5" %>
+        </div>
 
-    <div class="">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                          focus:border-primary-600 block w-full p-2.5" %>
-    </div>
+        <div class="">
+          <%= f.label :email, 'Email' %>
+          <%= f.email_field :email, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                              focus:border-primary-600 block w-full p-2.5" %>
+        </div>
 
-    <div class="">
-      <%= f.label :birthday %>
-      <%= f.text_field :birthday, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-      focus:border-primary-600 block w-full p-2.5" %>
-    </div>
+        <div class="">
+          <%= f.label :birthday,'Data de nascimento' %>
+          <%= f.date_field :birthday, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          focus:border-primary-600 block w-full p-2.5" %>
+        </div>
 
-    <div class="">
-      <%= f.label :phone %>
-      <%= f.text_field :phone, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-      focus:border-primary-600 block w-full p-2.5" %>
-    </div>
+        <div class="" >
+          <%= f.label :phone, 'Telefone' %>
+          <%= f.text_field :phone,"x-mask":"+55 99 99999-9999", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          focus:border-primary-600 block w-full p-2.5" %>
+        </div>
 
-    <div class="">
-      <%= f.label :photo %>
-      <%= f.text_field :photo, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-      focus:border-primary-600 block w-full p-2.5" %>
-    </div>
+        <div class="">
+          <%= f.label :photo, 'Foto' %>
+          <%= f.file_field :photo, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          focus:border-primary-600 block w-full p-2.5"  %>
+        </div>
 
-    <div class="">
-      <%= f.label :status %>
-      <%= f.number_field :status, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-      focus:border-primary-600 block w-full p-2.5" %>
-    </div>
+        <div class="">
+          <%= f.label :status %>
+          <div class="mt-2">
+            <%= f.select :status, Municipe.statuses.keys, { include_blank: "Selecione" }, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600" %>
+          </div>
+        </div>
+
+        <div class="">
+          <%= f.label :cns,'CNS' %>
+          <%= f.text_field :cns,"x-mask":"999999999999999", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+
+        <div class="">
+          <%= f.label :cpf,'CPF' %>
+          <%= f.text_field :cpf,"x-mask":"999.999.999-99", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          focus:border-primary-600 block w-full p-2.5" %>
+        </div>
+      </div>
 
       <h1 class="text-xl py-2 font-medium">Endereço</h1>
-      <%= f.fields_for :addresses do |address_form| %>
+      <%= f.fields_for :address do |address_form| %>
       <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
         <div>
           <%= address_form.label :public_place, 'Rua' %>
@@ -59,7 +74,7 @@
         </div>
         <div>
           <%= address_form.label :neighborhood, 'Bairro' %>
-          <%= address_form.text_field :city, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          <%= address_form.text_field :neighborhood, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                                                       focus:border-primary-600 block w-full p-2.5" %>
         </div>
         <div>
@@ -75,19 +90,18 @@
         </div>
         <div>
           <%= address_form.label :ibge_code, 'Código IBGE' %>
-          <%= address_form.text_field :ibge_code, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          <%= address_form.text_field :ibge_code,"x-mask":"9999999", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                                                       focus:border-primary-600 block w-full p-2.5" %>
         </div>
         <div>
           <%= address_form.label :zip, 'CEP' %>
-          <%= address_form.text_field :zip, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+          <%= address_form.text_field :zip,"x-mask":"99999-999", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                                                       focus:border-primary-600 block w-full p-2.5" %>
         </div>
       </div>
-
-      <% end %>
-    <div class="">
-      <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    </div>
+    <% end %>
+    <%= f.submit "Confirmar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= link_to 'Voltar', root_path, data: { turbo: :false }, class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
   <% end %>
 <% end %>
