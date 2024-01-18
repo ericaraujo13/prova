@@ -66,37 +66,53 @@
 
       <h1 class="text-xl py-2 font-medium">Endereço</h1>
       <%= f.fields_for :address do |address_form| %>
-      <div class="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
+      <div x-data="{public_place: '', zip: '', city: '', neighborhood: '', state: '', ibge_code: ''}" class="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
         <div>
           <%= address_form.label :public_place, 'Rua' %>
-          <%= address_form.text_field :public_place, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                                      focus:border-primary-600 block w-full p-2.5" %>
+          <%= address_form.text_field :public_place,
+                                      "x-model":"public_place",
+                                      class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                              focus:border-primary-600 block w-full p-2.5" %>
         </div>
         <div>
           <%= address_form.label :neighborhood, 'Bairro' %>
-          <%= address_form.text_field :neighborhood, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                                      focus:border-primary-600 block w-full p-2.5" %>
+          <%= address_form.text_field :neighborhood,
+                                      "x-model":"neighborhood",
+                                      class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                              focus:border-primary-600 block w-full p-2.5" %>
         </div>
         <div>
           <%= address_form.label :city, 'Cidade' %>
-          <%= address_form.text_field :city, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                                      focus:border-primary-600 block w-full p-2.5" %>
+          <%= address_form.text_field :city,
+                                      "x-model":"city",
+                                      class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                              focus:border-primary-600 block w-full p-2.5" %>
         </div>
 
         <div>
           <%= address_form.label :state, 'Estado' %>
-          <%= address_form.text_field :state, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                                      focus:border-primary-600 block w-full p-2.5" %>
+          <%= address_form.text_field :state, 
+                                      "x-model":"state",
+                                      class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                              focus:border-primary-600 block w-full p-2.5" %>
         </div>
         <div>
           <%= address_form.label :ibge_code, 'Código IBGE' %>
-          <%= address_form.text_field :ibge_code,"x-mask":"9999999", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                                      focus:border-primary-600 block w-full p-2.5" %>
+          <%= address_form.text_field :ibge_code,"x-mask":"9999999",
+                                      "x-model":"ibge_code",
+                                      class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                                              focus:border-primary-600 block w-full p-2.5" %>
         </div>
         <div>
           <%= address_form.label :zip, 'CEP' %>
-          <%= address_form.text_field :zip,"x-mask":"99999-999", class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                                                      focus:border-primary-600 block w-full p-2.5" %>
+          <%= address_form.text_field :zip,
+                                      "x-mask":"99999-999",
+                                      "x-model":"zip",
+                                      "@input.debounce.100ms": "getAddress($data, $data.zip)",
+                                       class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg
+                                              focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                                %>
+          <span x-show="error" class="text-bold">Cep inválido</span>
         </div>
       </div>
     <% end %>

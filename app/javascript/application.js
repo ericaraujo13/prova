@@ -4,7 +4,9 @@ import "controllers"
 import 'flowbite'
 import Alpine from 'alpinejs'
 import mask from '@alpinejs/mask'
+import getAddress from "./controllers/getAddress"
 
 window.Alpine = Alpine
 Alpine.start()
 Alpine.plugin(mask)
+window.getAddress = getAddress
