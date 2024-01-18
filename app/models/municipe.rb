@@ -3,6 +3,8 @@ class Municipe < ApplicationRecord
 
   has_one :address
   accepts_nested_attributes_for :address, allow_destroy: true
+  after_commit :send_welcome_email, on: :create
+  after_commit :send_update_email, on: :update
 
   enum status: { inactive: 0, active: 1 }
   
@@ -24,4 +26,13 @@ class Municipe < ApplicationRecord
   validates :cns, presence: true,
                   format: { with: /\A[0-9]{15}\z/ }
 
+
+  private 
+
+  def send_welcome_email
+    MunicipeMailer.with(municipe: self).welcome_email.deliver_now
+  end
+  def send_update_email
+    MunicipeMailer.with(municipe: self).update_email.deliver_now
+  end
 end
