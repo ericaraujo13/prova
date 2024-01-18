@@ -1,6 +1,8 @@
 class Municipe < ApplicationRecord
+  searchkick
+
   has_one :address
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, allow_destroy: true
 
   enum status: { inactive: 0, active: 1 }
 
