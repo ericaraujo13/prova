@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "image_processing", ">= 1.2"
 gem "searchkick"
 gem "elasticsearch"
+gem 'rails-i18n', '~> 7.0.0'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]

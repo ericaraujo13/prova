@@ -3,7 +3,7 @@
   <%= form_for @municipe do |f| %>
     <% if @municipe.errors.any? %>
       <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-        <h2><%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
+        <h2><%= pluralize(@municipe.errors.count, "erros") %> impediram a edição de municipe.</h2>
         <ul>
           <% @municipe.errors.each do |error| %>
             <li><%= error.full_message %></li>
@@ -47,7 +47,7 @@
         <div class="">
           <%= f.label :status %>
           <div class="mt-2">
-            <%= f.select :status, Municipe.statuses.keys, { include_blank: "Selecione" }, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600" %>
+            <%= f.select :status, Municipe.statuses.keys.map { |status| [I18n.t("municipe.statuses.#{status}"), status] }, { include_blank: I18n.t("municipe.statuses.select_option") }, class: "bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600" %>
           </div>
         </div>
 
