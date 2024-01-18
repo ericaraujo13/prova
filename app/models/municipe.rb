@@ -5,7 +5,7 @@ class Municipe < ApplicationRecord
   accepts_nested_attributes_for :address, allow_destroy: true
 
   enum status: { inactive: 0, active: 1 }
-
+  
   has_one_attached :photo do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
     attachable.variant :profile, resize_to_limit: [320, 320]

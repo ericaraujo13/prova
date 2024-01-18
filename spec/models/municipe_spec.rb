@@ -10,7 +10,7 @@ RSpec.describe Municipe, type: :model do
     it { is_expected.to allow_value('user@example.com').for(:email) }
     it { is_expected.not_to allow_value('invalid_email').for(:email) }
     it { is_expected.to validate_presence_of(:status) }
-    it { is_expected.to define_enum_for(:status).with_values(active: 0, inactive: 1) }
+    it { is_expected.to define_enum_for(:status).with_values(inactive: 0, active: 1) }
     it { is_expected.to validate_presence_of(:birthday) }
     it { is_expected.to validate_presence_of(:phone) }
     it { is_expected.to allow_value('+123 45 67890-1234').for(:phone) }
