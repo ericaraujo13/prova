@@ -1,3 +1,6 @@
+Link para acessar produção AWS
+http://ec2-52-67-249-127.sa-east-1.compute.amazonaws.com/
+
 ## Como rodar um projeto Rails
 
 Descrição: Este arquivo README fornece instruções sobre como rodar um projeto Rails e subir o servidor local com bin/dev.
