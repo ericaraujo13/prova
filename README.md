@@ -7,13 +7,17 @@ Requisitos:
     Ruby 3.2.2
     Rails 7.1.2
 
-# Instalação:
+# Instalação local:
 
 Criando base de dados:
 
 rode o comando 
 
 rails db:prepare
+
+# Instalação Docker:
+rode o comando 
+docker compose up --build -d
 
 Agora vamos configurar o elasticsearch
 
