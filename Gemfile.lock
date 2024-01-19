@@ -93,14 +93,6 @@ GEM
     diff-lcs (1.5.0)
     drb (2.2.0)
       ruby2_keywords
-    elastic-transport (8.3.0)
-      faraday (< 3)
-      multi_json
-    elasticsearch (8.12.0)
-      elastic-transport (~> 8.3)
-      elasticsearch-api (= 8.12.0)
-    elasticsearch-api (8.12.0)
-      multi_json
     erubi (1.12.0)
     factory_bot (6.4.5)
       activesupport (>= 5.0.0)
@@ -180,6 +172,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
+    opensearch-ruby (3.1.0)
+      faraday (>= 1.0, < 3)
+      multi_json (>= 1.0)
     pg (1.5.4)
     psych (5.1.2)
       stringio
@@ -319,13 +314,13 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
-  elasticsearch
   factory_bot_rails
   ffaker
   image_processing (>= 1.2)
   importmap-rails
   jbuilder
   letter_opener_web (~> 2.0)
+  opensearch-ruby
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)

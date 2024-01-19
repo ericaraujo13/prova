@@ -15,7 +15,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "image_processing", ">= 1.2"
 gem "searchkick"
-gem "elasticsearch"
+gem 'opensearch-ruby'
 gem 'rails-i18n', '~> 7.0.0'
 
 group :development, :test do
