@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    image: 211125592763.dkr.ecr.sa-east-1.amazonaws.com/municipe-admin2:latest
+    ports:
+      - 80:3000
+    environment:
+      - DATABASE_URL=postgres://postgres:password@database-1.cnggy88qqgje.sa-east-1.rds.amazonaws.com:5432/municipe
+      - OPENSEARCH_URL=https://vpc-municipe-eayhnuefq4tbrxawh5pntstngq.sa-east-1.es.amazonaws.com
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
